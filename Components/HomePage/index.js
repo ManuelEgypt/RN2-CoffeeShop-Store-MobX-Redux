@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
+import { connect } from "react-redux";
 
 // NativeBase Components
 import { Container, Header } from "native-base";
@@ -24,5 +25,19 @@ class HomePage extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    coffeeShops: state.coffeeReducer.coffeeShops
+  };
+};
 
-export default HomePage;
+const mapDispatchToProps = dispatch => {
+  return {
+    getCoffeeShops: () => dispatch(actionCreators.getCoffeeShops())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomePage);
